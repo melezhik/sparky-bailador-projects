@@ -1,0 +1,3 @@
+crontab: "* * * * *"
+sparrowdo:
+    - no_sudo: true
