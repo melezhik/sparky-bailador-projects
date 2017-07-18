@@ -26,6 +26,8 @@ file 'app.pl6', %(
   content => slurp "app.pl6",
 );
 
+bash "cat app.pl6 && echo";
+
 bash 'perl6 -I lib ./app.pl6  </dev/null &>/dev/null & echo $! > app.pid;', %( 
   description => "run app", 
   debug => True,
