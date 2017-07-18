@@ -1,4 +1,5 @@
 sparrowdo:
+  #verbose: true
   no_sudo: true
 
 crontab: "*/1 * * * *"

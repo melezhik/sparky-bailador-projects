@@ -1,0 +1,23 @@
+my $user = %*ENV<USER>;
+
+my $cmd = Q{
+(
+  echo .} ~ Q{headers on ; 
+  echo 'select "<a href=" || project || "/build-" || id || ".txt>link</a>" as link
+  , id as ID, project, state, dt from builds;' ) \
+  | sqlite3 /home/} ~ $user ~ Q{/.sparky/projects/db.sqlite3  > report.csv };
+
+
+bash $cmd, %( description => 'update report csv' , debug => True );
+
+bash "rm -rf /home/$user/.sparky/reports/report.html";
+
+task-run "update report html", "csvtotable", %(
+  args => (
+    "report.csv",
+    "/home/$user/" ~ ".sparky/reports/report.html",
+    %( caption => 'bailador-test-report', delimiter => '|' )
+  )
+)
+
+

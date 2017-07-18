@@ -1,3 +1,3 @@
 crontab: "*/1 * * * *"
 sparrowdo:
-    - no_sudo: true
+    - host: 127.0.0.1
