@@ -1,0 +1,46 @@
+my $port = 4002;
+
+package-install 'git';
+
+bash q:to/HERE/, %( description => 'get bailador source code update' );
+  set -e;
+  if test -d .git; then
+    git pull
+  else
+    git clone https://github.com/Bailador/Bailador.git . 
+  fi
+
+HERE
+
+zef 'Path::Iterator';
+zef '.', %( depsonly => True );
+zef 'TAP::Harness';
+
+bash 'kill `cat app.pid 2>/dev/null` 2>/dev/null || echo app is not running', %(
+  description => "kill app",
+  debug => True,
+);
+
+
+file 'app.pl6', %(
+  content => slurp "app.pl6",
+);
+
+bash 'perl6 ./app.pl6  </dev/null &>/dev/null & echo $! > app.pid;', %( 
+  description => "run app", 
+  debug => True,
+  envvars => %(
+    PATH => 'bin/:$PATH',
+    BAILADOR => "port:$port"
+  ) 
+);
+
+proc-exists-by-pid 'bailador app', 'app.pid';
+
+http-ok %( has-content => 'What a bar' , port => $port , path => "/foo/bar");
+
+bash 'kill `cat app.pid`', %(
+  description => "kill app",
+  debug => True,
+);
+
