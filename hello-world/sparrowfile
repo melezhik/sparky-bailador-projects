@@ -39,7 +39,7 @@ bash 'perl6 -I lib ./app.pl6  </dev/null &>/dev/null & echo $! > app.pid;', %(
 
 proc-exists-by-pid 'bailador app', 'app.pid';
 
-bash 'sleep 5';
+bash 'sleep 10';
 
 http-ok %( has-content => 'hello world' , port => $port );
 
