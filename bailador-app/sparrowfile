@@ -1,3 +1,5 @@
+my $port = 4001;
+
 package-install 'git';
 
 bash q:to/HERE/, %( description => 'get bailador source code update' );
@@ -28,11 +30,17 @@ bash 'perl6 ./app.pl6  </dev/null &>/dev/null & echo $! > app.pid;', %(
   description => "run app", 
   debug => True,
   envvars => %(
-    PATH => 'bin/:$PATH'
+    PATH => 'bin/:$PATH',
+    BAILADOR => "port:$port"
   ) 
 );
 
-#bash 'kill `cat app.pid`', %(
-#  description => "kill app",
-#  debug => True,
-#);
+proc-exists-by-pid 'bailador app', 'app.pid';
+
+http-ok %( has-content => 'hello world' , port => $port );
+
+bash 'kill `cat app.pid`', %(
+  description => "kill app",
+  debug => True,
+);
+
