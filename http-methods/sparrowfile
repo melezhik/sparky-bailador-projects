@@ -40,19 +40,19 @@ proc-exists-by-pid 'bailador app', 'app.pid';
 
 bash 'sleep 5';
 
-bash "curl -X POST 127.0.0.1:$port --noproxy=127.0.0.1", %(
+bash "curl -X POST 127.0.0.1:$port --noproxy 127.0.0.1", %(
   expect_stdout => "I am post method"
 );
 
-bash "curl -X PUT 127.0.0.1:$port --noproxy=127.0.0.1", %(
+bash "curl -X PUT 127.0.0.1:$port --noproxy 127.0.0.1", %(
   expect_stdout => "I am put method"
 );
 
-bash "curl -X DELETE 127.0.0.1:$port --noproxy=127.0.0.1", %(
+bash "curl -X DELETE 127.0.0.1:$port --noproxy 127.0.0.1", %(
   expect_stdout => "I am delete method"
 );
 
-bash "curl -X GET 127.0.0.1:$port --noproxy=127.0.0.1", %(
+bash "curl -X GET 127.0.0.1:$port --noproxy 127.0.0.1", %(
   expect_stdout => "I am get method"
 );
 
