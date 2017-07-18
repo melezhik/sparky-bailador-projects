@@ -37,6 +37,8 @@ bash 'perl6 -I lib ./app.pl6  </dev/null &>/dev/null & echo $! > app.pid;', %(
 
 proc-exists-by-pid 'bailador app', 'app.pid';
 
+bash 'sleep 3';
+
 http-ok %( has-content => 'What a bar' , port => $port , path => "/foo/bar");
 
 bash 'kill `cat app.pid`', %(
