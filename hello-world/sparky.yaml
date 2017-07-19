@@ -2,4 +2,4 @@ sparrowdo:
   #verbose: true
   no_sudo: true
 
-crontab: "*/15 * * * *"
+crontab: "0 * * * *"

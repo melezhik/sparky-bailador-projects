@@ -17,7 +17,7 @@ zef 'TAP::Harness';
 bash 'prove6 -l', %(
   debug => True,
   envvars => %(
-    PATH => '/opt/rakudo/share/perl6/site/bin/:/opt/rakudo/bin:$PATH'
+    PATH => '/root/.rakudobrew/moar-nom/install/share/perl6/site/bin:$PATH'
   )
 );
 
