@@ -3,7 +3,7 @@
 my $user = %*ENV<USER>;
 
 if target_os() ~~ m/alpine/ {
-  package-install 'py-pip';
+  package-install 'py2-pip';
 }
 
 my $cmd = Q{
