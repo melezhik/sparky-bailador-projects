@@ -1,4 +1,10 @@
+
+
 my $user = %*ENV<USER>;
+
+if target_os() ~~ m/alpine/ {
+  package-install 'py-pip';
+}
 
 my $cmd = Q{
 (
