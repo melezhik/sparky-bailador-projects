@@ -5,12 +5,14 @@ if target_os() ~~ m/alpine/ {
 }
 
 
-bash q:to/HERE/;
+bash q:to/HERE/, %( description => 'get updates from  https://github.com/Bailador/Bailador.git');
   set -e;
   if test -d .git; then
     git pull
+    git branch --verbose
   else
     git clone https://github.com/Bailador/Bailador.git . 
+    git branch --verbose
   fi
 
 HERE
