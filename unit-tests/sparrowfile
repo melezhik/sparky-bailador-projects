@@ -1,5 +1,10 @@
 package-install 'git';
 
+if target_os() ~~ m/alpine/ {
+  package-install 'coreutils';
+}
+
+
 bash q:to/HERE/;
   set -e;
   if test -d .git; then
@@ -14,7 +19,7 @@ zef 'Path::Iterator';
 zef '.', %( depsonly => True );
 zef 'TAP::Harness';
 
-bash 'prove6 -l', %(
+bash 'timeout 120 prove6 -l', %(
   debug => True,
   envvars => %(
     PATH => '/root/.rakudobrew/moar-nom/install/share/perl6/site/bin:$PATH'
