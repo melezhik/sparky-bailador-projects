@@ -1,4 +1,4 @@
-crontab: "*/15 * * * *"
+crontab: "20,40 * * * *"
 
 sparrowdo:
     - no_sudo: true
