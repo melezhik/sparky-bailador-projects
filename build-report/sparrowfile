@@ -20,7 +20,7 @@ task-run "build report html", "csvtotable", %(
   args => (
     'report.csv',
     "/home/$user/.sparky/reports/report.html",
-    '--overwrite',
+    [ [ 'overwrite' ] ],
     display-length => 100,
     caption => 'bailador-test-report',
     delimiter => '|',
