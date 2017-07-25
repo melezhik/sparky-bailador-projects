@@ -2,15 +2,7 @@ my $port = 4003;
 
 package-install 'git';
 
-bash q:to/HERE/, %( description => 'get bailador source code update' );
-  set -e;
-  if test -d .git; then
-    git pull
-  else
-    git clone https://github.com/Bailador/Bailador.git . 
-  fi
-
-HERE
+git-scm "https://github.com/Bailador/Bailador.git";
 
 zef 'Path::Iterator';
 zef '.', %( depsonly => True );

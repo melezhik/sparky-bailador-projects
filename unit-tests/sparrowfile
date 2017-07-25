@@ -1,21 +1,10 @@
 package-install 'git';
 
+git-scm "https://github.com/Bailador/Bailador.git";
+
 if target_os() ~~ m/alpine/ {
   package-install 'coreutils';
 }
-
-
-bash q:to/HERE/, %( description => 'get updates from  https://github.com/Bailador/Bailador.git');
-  set -e;
-  if test -d .git; then
-    git pull
-    git branch --verbose
-  else
-    git clone https://github.com/Bailador/Bailador.git . 
-    git branch --verbose
-  fi
-
-HERE
 
 zef 'Path::Iterator';
 zef '.', %( depsonly => True );
