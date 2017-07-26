@@ -2,3 +2,6 @@ sparrowdo:
   no_sudo: true
 
 crontab: "10 * * * *"
+
+keep_builds: 50
+

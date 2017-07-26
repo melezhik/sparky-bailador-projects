@@ -11,10 +11,10 @@ my $cmd = Q{
   echo .} ~ Q{headers on ; 
   echo 'select "<a href=" || project || "/build-" || id || ".txt>link</a>" as link
   , id as ID, project, state, dt from builds where project !=  "build-report" order by dt desc;' ) \
-  | sqlite3 /home/} ~ $user ~ Q{/.sparky/projects/db.sqlite3  > report.csv   };
+  | sqlite3 /home/} ~ $user ~ Q{/.sparky/projects/db.sqlite3  > report.csv   && pwd };
 
 
-bash $cmd, %( description => 'update report csv' , debug => False );
+bash $cmd, %( description => 'update report csv' , debug => True  );
 
 task-run "build report html", "csvtotable", %(
   args => (
