@@ -1,4 +1,6 @@
 sparrowdo:
     - no_sudo: true
 
-crontab: "* * * * *"
+crontab: "10 * * * *"
+
+keep_builds: 10
